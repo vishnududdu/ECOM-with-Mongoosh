@@ -14,8 +14,7 @@ export default class ProductController {
     }catch(err){
     console.log(err);
     return res.status(200).send("Something went wrong");
-  }
-   
+  } 
   }
 
   async addProduct(req, res) {

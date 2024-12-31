@@ -9,7 +9,7 @@ export class LikeRepository{
 
     async getLikes(type, id){
         return await LikeModel.find({
-            likeable: new ObjectId(id),
+            likeable:new ObjectId(id),
             on_model:type
         }).populate('user')
         .populate({path:'likeable', model: type})
@@ -22,7 +22,7 @@ export class LikeRepository{
                 likeable: new ObjectId(productId),
                 on_model:'Product'
             });
-            await newLike.save();
+            return await newLike.save();
         }catch(err){
             console.log(err);
             throw new ApplicationError("Something went wrong with database", 500);    
@@ -36,7 +36,7 @@ export class LikeRepository{
                 likeable: new ObjectId(categoryId),
                 on_model:'Category'
             });
-            await newLike.save();
+            return await newLike.save();
         }catch(err){
             console.log(err);
             throw new ApplicationError("Something went wrong with database", 500);    

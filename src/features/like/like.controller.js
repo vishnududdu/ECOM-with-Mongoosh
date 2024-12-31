@@ -24,15 +24,16 @@ export class LikeController{
             if(type!='Product' && type!='Category'){
                 return res.status(400).send("Invalid");
             }
+            let result="";
             if(type=='Product'){
-                await this.likeRepository.likeProduct(req.userID, id);
+                result=await this.likeRepository.likeProduct(req.userID, id);
             }else{
-                await this.likeRepository.likeCategory(req.UserID, id);    
+                result=await this.likeRepository.likeCategory(req.userID, id);    
             }
+            return res.status(201).send(result);
         }catch(err){
             console.log(err);
             return res.status(200).send("Something went wrong");
           }
-          res.status(201).send();
     }
 }

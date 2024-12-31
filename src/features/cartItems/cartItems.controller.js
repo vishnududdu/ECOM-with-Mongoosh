@@ -1,4 +1,3 @@
-import CartIemModel from './cartItems.model.js';
 import CartItemsRepository from './cartItems.repository.js';
 
 export class CartItemsController {

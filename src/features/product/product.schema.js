@@ -7,6 +7,8 @@ export const productSchema = new mongoose.Schema({
     category: String,
     description: String,
     inStock: Number,
+    imageUrl:String,
+    sizes:[String],
     reviews:[
         {
             type: mongoose.Schema.Types.ObjectId,
@@ -20,3 +22,7 @@ export const productSchema = new mongoose.Schema({
         }
     ]
 });
+
+productSchema.index({price:1});
+productSchema.index({name:1, category:-1});
+productSchema.index({desc:"text"});

@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { userSchema } from "./user.schema.js";
 import { ApplicationError } from "../../error-handler/applicationError.js";
+import { DatabaseError } from "../../error-handler/databaseError.js";
 
 // creating model from schema.
 const UserModel = mongoose.model('User', userSchema)
@@ -36,6 +37,9 @@ export default class UserRepository{
                 throw err;
             }else{
                 console.log(err);
+                if(err.code === 11000){
+                    throw new DatabaseError("Email already exists",500);
+                }
                 throw new ApplicationError("Something went wrong with database", 500);
             }
             
